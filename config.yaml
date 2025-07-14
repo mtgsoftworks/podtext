@@ -1,0 +1,158 @@
+# Podcast Transkripsiyon Sistemi Konfigürasyonu
+
+# API Anahtarları
+api_keys:
+  google_gemini: "${GOOGLE_GEMINI_API_KEY}"
+  huggingface: "${HUGGINGFACE_TOKEN}"
+  deepseek: "sk-11e24e0a6a15449abe4408f4a1046f9e"
+
+# Whisper Ayarları - Sadece Yerel Model
+whisper:
+  model: "large-v3-turbo" # Model size (ggml-large-v3-turbo.bin için)
+  language: "tr"
+  task: "transcribe"
+  temperature: 0.0
+  beam_size: 5
+  best_of: 5
+  # GGML model yolu
+  ggml_model_path: "models/ggml-large-v3-turbo.bin"
+
+# Konuşmacı Tanıma Ayarları
+speaker_diarization:
+  model: "pyannote/speaker-diarization-3.1"
+  min_speakers: 1
+  max_speakers: 10
+  clustering_threshold: 0.7
+  filter_threshold: 0.95
+
+# Ses Kalitesi Kategorileri
+audio_quality:
+  categories:
+    - "belirsiz_ses"        # Unclear audio
+    - "agir_aksan"          # Heavy accent
+    - "yanlis_dil"          # Wrong language
+    - "sentezlenmis"        # Synthesized speech
+    - "coklu_ses"           # Multiple voices
+  
+  thresholds:
+    pesq_min: 3.5
+    stoi_min: 0.8
+    snr_min: 20.0
+  categorical_thresholds:
+    multi_voice_variance: 0.5
+
+# LLM Ayarları
+gemini:
+  model: "gemini-2.5-pro"
+  temperature: 0.3
+  max_tokens: 2048
+  top_p: 0.8
+
+# DeepSeek Ayarları
+deepseek:
+  model: "deepseek-r-1"
+  temperature: 0.3
+  max_tokens: 2048
+  top_p: 0.8
+
+# NLP Ayarları (SpaCy Turkish Large Model - BERT yerine)
+nlp:
+  provider: "spacy"  # BERT yerine SpaCy kullan
+  model_name: "tr_core_news_lg"  # Turkish Large Model (~50MB)
+  tasks:
+    - "ner"          # Named Entity Recognition
+    - "sentiment"    # Duygu analizi (rule-based)
+    - "tokens"       # Token analizi (POS, morphology, dependency)
+    - "similarity"   # Metin benzerliği (SpaCy vectors)
+    - "keywords"     # Anahtar kelime çıkarma
+    - "summary"      # Metin özetleme
+
+# Etiketleme Sistemi
+labeling:
+  tags:
+    unsure: "[unsure: ]"
+    truncated: "[truncated: ]"
+    inaudible: "[inaudible:]"
+    overlap: "[overlap:]"
+  
+  auto_suggest: true
+  confidence_threshold: 0.6
+
+# POLLY STEP 2 FAQ Uyumluluk Ayarları
+polly_compliance:
+  enabled: true
+  
+  # FAQ 3: Non-speech noise removal
+  remove_non_speech_noise: true
+  non_speech_patterns:
+    - "burp|burps|belch"
+    - "chuckle|chuckles|giggle"
+    - "kiss|kissing|smack"
+    - "gnaw|gnawing|chew"
+    - "sniff|sniffle|cough"
+  
+  # FAQ 7: Elongated word normalization
+  normalize_elongated_words: true
+  
+  # FAQ 8: Laughter filtering
+  filter_genuine_laughter: true
+  keep_dictated_laughter: true
+  
+  # FAQ 9: Proper noun handling
+  correct_proper_nouns: true
+  use_unsure_for_uncertain_names: true
+  
+  # FAQ 18: Number format correction
+  correct_number_format: true
+  
+  # FAQ 19, 20: Capitalization rules
+  apply_capitalization_rules: true
+  lowercase_first_word: true  # Unless proper noun
+  
+  # FAQ 17: Multiple voices threshold
+  multiple_voices_threshold: 0.15  # 15% speaking time for flagging
+
+# Ses İşleme
+audio_processing:
+  sample_rate: 16000
+  chunk_length: 30  # saniye
+  overlap: 5        # saniye
+  supported_formats: ["wav", "mp3", "flac", "m4a", "ogg"]
+  
+  noise_reduction:
+    enabled: true
+    method: "spectral_subtraction"
+  
+  normalization:
+    enabled: true
+    target_lufs: -23.0
+
+# Çıktı Ayarları
+output:
+  format: "detailed"  # simple, detailed, json
+  include_timestamps: true
+  include_confidence: true
+  include_speaker_labels: true
+  save_intermediate: true
+
+# Logging
+logging:
+  level: "INFO"
+  file: "logs/podcast_transcription.log"
+  max_size: "10MB"
+  backup_count: 5
+
+# Performans - SpaCy için optimize edildi
+performance:
+  # Fiziksel çekirdek sayısına denk batch_size ve logical-1 worker
+  batch_size: 10
+  num_workers: 15
+  gpu_acceleration: false
+  cache_models: true
+  cache_dir: "models/"
+  force_gpu: false
+  gpu_memory_fraction: 0.9
+  mixed_precision: false
+  # Model indirme kontrolü
+  allow_model_download: true  # false yaparsanız sadece yerel modeller kullanılır
+  prefer_local_models: true   # önce yerel modelleri kontrol et 
