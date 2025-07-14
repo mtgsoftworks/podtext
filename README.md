@@ -308,10 +308,4 @@ This project is licensed under the MIT License. See the LICENSE file for details
 - **spaCy** - NLP library
 - **Rich** - Terminal UI
 
-## 📞 Contact
-
-- **GitHub Issues**: Report issues
-- **Email**: info@podcasttranscription.com
-- **Documentation**: Wiki
-
 ⭐ **If this project helped you, don't forget to give it a star on GitHub!**
