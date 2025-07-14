@@ -1,71 +1,70 @@
-# 🎙️ Podcast Transkripsiyon Sistemi
+# Podcast Transcription System
+A comprehensive tool that performs high-quality transcription of podcast audio recordings using modern artificial intelligence technologies.
 
-Modern yapay zeka teknolojileri kullanarak podcast ses kayıtlarının yüksek kaliteli transkripsiyon işlemini gerçekleştiren kapsamlı bir araçtır.
+✨ **Features**
 
-## ✨ Özellikler
+## 🎯 Transcription and Analysis
+- **High Accuracy Transcription**: OpenAI Whisper Large v3 Turbo
+- **Speaker Recognition and Separation**: Advanced speaker diarization with pyannote.audio
+- **Main Speaker Filtering**: Only the main speaker's speech is transcribed
+- **AI-Powered Quality Analysis**: Smart analysis with Google Gemini 2.5 Pro
+- **Linguistic Analysis**: Turkish NLP processing with spaCy
 
-### 🎯 Transkripsiyon ve Analiz
-- **Yüksek Doğrulukta Transkripsiyon**: OpenAI Whisper Large v3 Turbo
-- **Konuşmacı Tanıma ve Ayırma**: pyannote.audio ile gelişmiş speaker diarization
-- **Ana Konuşmacı Filtreleme**: Sadece ana konuşmacının konuşması yazıya dökülür
-- **AI Destekli Kalite Analizi**: Google Gemini 2.5 Pro ile akıllı analiz
-- **Dilbilimsel Analiz**: spaCy ile Türkçe NLP işlemleri
+## 🔍 Quality Assessment
+- **Audio Quality Metrics**: PESQ, STOI objective measurements
+- **Categorical Evaluation**: Detection of unclear speech, heavy accents, synthesized speech
+- **SNR and Clipping Analysis**: Technical audio quality control
+- **Automatic Suggestion System**: Quality improvement recommendations
 
-### 🔍 Kalite Değerlendirme  
-- **Ses Kalitesi Metrikleri**: PESQ, STOI objektif ölçümler
-- **Kategorik Değerlendirme**: Belirsiz ses, ağır aksan, sentezlenmiş konuşma tespiti
-- **SNR ve Clipping Analizi**: Teknik ses kalitesi kontrolü
-- **Otomatik Öneri Sistemi**: Kalite iyileştirme tavsiyeleri
+## 🔊 Audio Preprocessing
+- **Noise Reduction**: Background noise reduction (spectral_subtraction)
+- **Normalization**: Audio level balancing with target LUFS -23
 
-### 🔊 Ses Ön İşleme
-- **Gürültü Azaltma**: Arka plan gürültüsü azaltma (spectral_subtraction)
-- **Normalizasyon**: Ses seviyesini hedef LUFS -23 ile dengeleme
+## 🏷️ Smart Labeling
+- **Automatic Label Suggestions**: [unsure:], [truncated:], [inaudible:], [overlap:]
+- **Confidence Score Analysis**: Detection of low-confidence segments
+- **Pattern Recognition**: Automatic detection of uncertainty and interruption expressions
+- **Human-in-the-Loop**: Manual verification and correction
+- **POLLY STEP 2 FAQ Compliance**: Industry standard transcription rules
 
-### 🏷️ Akıllı Etiketleme
-- **Otomatik Etiket Önerileri**: [unsure:], [truncated:], [inaudible:], [overlap:]
-- **Güven Skoru Analizi**: Düşük güvenilirlikli segmentleri tespit
-- **Kalıp Tanıma**: Belirsizlik ve kesinti ifadelerini otomatik algılama
-- **İnsan-in-the-Loop**: Manuel doğrulama ve düzeltme
-- **POLLY STEP 2 FAQ Uyumluluk**: Endüstri standardı transkripsiyon kuralları
+## 🎯 POLLY STEP 2 FAQ Compliant Features
+- **FAQ 3**: Non-speech noise filtering (burp, chuckle, kiss, gnaw, etc.)
+- **FAQ 7**: Extended word normalization ("yessss" → "yes")
+- **FAQ 8**: Real vs. verbal laughter distinction
+- **FAQ 9**: Proper name correction (reliable source checking for celebrities, companies)
+- **FAQ 15**: Heavy accent detection (marked with [unsure:])
+- **FAQ 16**: Main speaker only transcription
+- **FAQ 17**: Multi-voice analysis (based on meaningful speech duration)
+- **FAQ 18**: Number format correction ("50 000" → "fifty thousand")
+- **FAQ 19-20**: Capitalization rules (first word lowercase)
 
-### 🎯 POLLY STEP 2 FAQ Uyumlu Özellikler
-- **FAQ 3**: Konuşma dışı gürültü filtreleme (burp, chuckle, kiss, gnaw vb.)
-- **FAQ 7**: Uzatılmış kelime normalleştirme ("yessss" → "yes")
-- **FAQ 8**: Gerçek vs. sözlü gülme ayrımı
-- **FAQ 9**: Özel isim düzeltme (ünlüler, şirketler için güvenilir kaynak kontrolü)
-- **FAQ 15**: Ağır aksan tespiti ([unsure: ] ile işaretleme)
-- **FAQ 16**: Sadece ana konuşmacı transkripsiyon
-- **FAQ 17**: Çoklu ses analizi (anlamlı konuşma süresi bazlı)
-- **FAQ 18**: Sayı formatı düzeltme ("50 000" → "elli bin")
-- **FAQ 19-20**: Büyük/küçük harf kuralları (ilk kelime küçük harf)
+## 🎛️ User Experience
+- **Terminal Interface**: Rich, interactive CLI
+- **Text Editor Integration**: VS Code, Sublime, Vim support
+- **Progress Display**: Real-time processing tracking with percentage bar
+- **Audio Playback**: Terminal audio control with ffplay
 
-### 🎛️ Kullanıcı Deneyimi
-- **Terminal Arayüzü**: Zengin, interaktif CLI
-- **Metin Editörü Entegrasyonu**: VS Code, Sublime, Vim desteği
-- **İlerleme Gösterimi**: Yüzdelikli çubuk ile gerçek zamanlı işlem takibi
-- **Ses Oynatma**: ffplay ile terminal ses kontrolü
+## 📋 Requirements
 
-## 📋 Gereksinimler
-
-### Sistem Gereksinimleri
+### System Requirements
 - Python 3.8+
-- FFmpeg (ses işleme için)
-- GPU (opsiyonel, pyannote.audio için hızlandırma)
+- FFmpeg (for audio processing)
+- GPU (optional, for pyannote.audio acceleration)
 
-### API Anahtarları
-- OpenAI API Key (Whisper transkripsiyon)
-- Google Gemini API Key (AI analiz)
-- HuggingFace Token (pyannote.audio modelleri)
+### API Keys
+- OpenAI API Key (Whisper transcription)
+- Google Gemini API Key (AI analysis)
+- HuggingFace Token (pyannote.audio models)
 
-## 🚀 Kurulum
+## 🚀 Installation
 
-### 1. Repository'yi Klonlayın
+### 1. Clone the Repository
 ```bash
-git clone https://github.com/kullanici/podcast-transcription.git
+git clone https://github.com/username/podcast-transcription.git
 cd podcast-transcription
 ```
 
-### 2. Sanal Ortam Oluşturun
+### 2. Create Virtual Environment
 ```bash
 python -m venv venv
 
@@ -76,28 +75,28 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-### 3. Bağımlılıkları Yükleyin
+### 3. Install Dependencies
 ```bash
 pip install -r requirements.txt
 
-# spaCy Türkçe modelini yükleyin
+# Install spaCy Turkish model
 python -m spacy download tr_core_news_lg
 ```
 
-### 4. FFmpeg Kurulumu
+### 4. FFmpeg Installation
 
 #### Windows
 ```bash
-# Chocolatey ile
+# With Chocolatey
 choco install ffmpeg
 
-# Scoop ile
+# With Scoop
 scoop install ffmpeg
 ```
 
 #### macOS
 ```bash
-# Homebrew ile
+# With Homebrew
 brew install ffmpeg
 ```
 
@@ -107,64 +106,64 @@ sudo apt update
 sudo apt install ffmpeg
 ```
 
-### 5. API Anahtarlarını Ayarlayın
+### 5. Set Up API Keys
 ```bash
-# .env dosyasını oluşturun
+# Create .env file
 cp .env.example .env
 
-# API anahtarlarınızı .env dosyasına ekleyin
+# Add your API keys to .env file
 OPENAI_API_KEY=your_openai_api_key_here
 GOOGLE_GEMINI_API_KEY=your_google_gemini_api_key_here  
 HUGGINGFACE_TOKEN=your_huggingface_token_here
 ```
 
-### 6. HuggingFace Model Erişimi
-[pyannote.audio](https://huggingface.co/pyannote/speaker-diarization-3.1) modellerine erişim için:
-1. HuggingFace hesabı oluşturun
-2. Model sayfasında kullanım koşullarını kabul edin
-3. Access token oluşturup .env dosyasına ekleyin
+### 6. HuggingFace Model Access
+For pyannote.audio model access:
+1. Create a HuggingFace account
+2. Accept terms of use on the model page
+3. Create an access token and add it to the .env file
 
-## 📖 Kullanım
+## 📖 Usage
 
-### Temel Kullanım
+### Basic Usage
 ```bash
-# Basit transkripsiyon
+# Simple transcription
 python main.py podcast.mp3
 
-# Ses dosyasını dinleme ile
+# With audio listening
 python main.py interview.wav
 
-# Özel konfigürasyon ile
+# With custom configuration
 python main.py meeting.m4a --config my_config.yaml
 ```
 
-### Gelişmiş Kullanım
+### Advanced Usage
 ```bash
-# İnteraktif olmayan mod
+# Non-interactive mode
 python main.py podcast.mp3 --no-interactive
 
-# Özel çıktı dizini
+# Custom output directory
 python main.py interview.wav --output results/
 
 # Verbose logging
 python main.py meeting.m4a --verbose
 
-# Yardım
+# Help
 python main.py --help
 ```
 
-### Desteklenen Ses Formatları
+### Supported Audio Formats
 - MP3
-- WAV  
+- WAV
 - FLAC
 - M4A
 - OGG
 
-## ⚙️ Konfigürasyon
+## ⚙️ Configuration
 
-`config.yaml` dosyasında ayarlanabilir parametreler:
+Configurable parameters in `config.yaml`:
 
-### Whisper Ayarları
+### Whisper Settings
 ```yaml
 whisper:
   model: "large-v3"
@@ -172,7 +171,7 @@ whisper:
   temperature: 0.0
 ```
 
-### Konuşmacı Tanıma
+### Speaker Diarization
 ```yaml
 speaker_diarization:
   model: "pyannote/speaker-diarization-3.1" 
@@ -180,7 +179,7 @@ speaker_diarization:
   max_speakers: 10
 ```
 
-### Ses Kalitesi Eşikleri
+### Audio Quality Thresholds
 ```yaml
 audio_quality:
   thresholds:
@@ -189,7 +188,7 @@ audio_quality:
     snr_min: 5.0
 ```
 
-### Etiketleme Sistemi
+### Labeling System
 ```yaml
 labeling:
   tags:
@@ -200,18 +199,18 @@ labeling:
   confidence_threshold: 0.6
 ```
 
-## 📊 Çıktı Formatları
+## 📊 Output Formats
 
-### JSON Çıktısı
+### JSON Output
 ```json
 {
   "audio_info": {
-    "sure_saniye": 1234.5,
-    "kalite_skoru": 85.2,
+    "duration_seconds": 1234.5,
+    "quality_score": 85.2,
     "format": "mp3"
   },
   "transcription": {
-    "text": "Transkripsiyon metni...",
+    "text": "Transcription text...",
     "segments": [...],
     "confidence": 0.92
   },
@@ -224,45 +223,45 @@ labeling:
 }
 ```
 
-### Metin Çıktısı
+### Text Output
 ```
-[00:01.2s - 00:05.8s] Merhaba, bugünkü podcast bölümümüze hoş geldiniz.
-[00:06.1s - 00:12.3s] [unsure:] Bugün konuğumuz teknoloji alanında...
-[00:13.0s - 00:18.5s] [overlap:] İki kişi aynı anda konuşuyor...
+[00:01.2s - 00:05.8s] Hello, welcome to today's podcast episode.
+[00:06.1s - 00:12.3s] [unsure:] Today our guest is in the technology field...
+[00:13.0s - 00:18.5s] [overlap:] Two people speaking simultaneously...
 ```
 
-## 🏗️ Mimari
+## 🏗️ Architecture
 
-### Modüler Yapı
+### Modular Structure
 ```
 src/
-├── core/           # Ana orkestratör
-├── audio/          # Ses işleme (pydub, librosa)
-├── models/         # AI modelleri (Whisper, Gemini, pyannote)
-├── quality/        # Kalite değerlendirme (PESQ, STOI)
-├── labeling/       # Otomatik etiketleme
-├── nlp/           # spaCy NLP analizi
-└── utils/         # Yardımcı araçlar
+├── core/           # Main orchestrator
+├── audio/          # Audio processing (pydub, librosa)
+├── models/         # AI models (Whisper, Gemini, pyannote)
+├── quality/        # Quality assessment (PESQ, STOI)
+├── labeling/       # Automatic labeling
+├── nlp/           # spaCy NLP analysis
+└── utils/         # Utility tools
 ```
 
-### Veri Akışı
-1. **Ses Yükleme** → AudioProcessor
-2. **Kalite Analizi** → AudioQualityEvaluator  
-3. **Konuşmacı Ayırma** → SpeakerDiarizer
-4. **Transkripsiyon** → WhisperTranscriber
-5. **AI Analizi** → GeminiAnalyzer
-6. **NLP İşleme** → SpacyAnalyzer
-7. **Etiketleme** → AutoLabeler
-8. **İnsan Düzeltmesi** → Terminal Editor
+### Data Flow
+1. Audio Loading → AudioProcessor
+2. Quality Analysis → AudioQualityEvaluator
+3. Speaker Separation → SpeakerDiarizer
+4. Transcription → WhisperTranscriber
+5. AI Analysis → GeminiAnalyzer
+6. NLP Processing → SpacyAnalyzer
+7. Labeling → AutoLabeler
+8. Human Correction → Terminal Editor
 
-## 🔧 Geliştirme
+## 🔧 Development
 
-### Test Çalıştırma
+### Run Tests
 ```bash
 pytest tests/
 ```
 
-### Kod Kalitesi
+### Code Quality
 ```bash
 # Linting
 flake8 src/
@@ -271,50 +270,48 @@ flake8 src/
 black src/
 ```
 
-### Debug Modu
+### Debug Mode
 ```bash
 DEBUG=true python main.py podcast.mp3 --verbose
 ```
 
-## 📈 Performans
+## 📈 Performance
 
-### Benchmark Sonuçları
-| Ses Süresi | İşlem Süresi | Bellek Kullanımı | GPU Hızlandırma |
-|------------|--------------|------------------|-----------------|
-| 10 dk      | ~2 dk        | 2-4 GB          | 3x hızlı        |
-| 30 dk      | ~5 dk        | 3-6 GB          | 3x hızlı        |
-| 60 dk      | ~8 dk        | 4-8 GB          | 3x hızlı        |
+### Benchmark Results
+| Audio Duration | Processing Time | Memory Usage | GPU Acceleration |
+|---------------|----------------|--------------|------------------|
+| 10 min        | ~2 min         | 2-4 GB       | 3x faster        |
+| 30 min        | ~5 min         | 3-6 GB       | 3x faster        |
+| 60 min        | ~8 min         | 4-8 GB       | 3x faster        |
 
-### Optimizasyon İpuçları
-- GPU kullanımı için CUDA kurulumu
-- Büyük dosyalar için chunk işleme
-- Paralel işlem için batch processing
+### Optimization Tips
+- CUDA installation for GPU usage
+- Chunk processing for large files
+- Batch processing for parallel operations
 
-## 🤝 Katkıda Bulunma
+## 🤝 Contributing
 
-1. Fork edin
-2. Feature branch oluşturun (`git checkout -b feature/amazing-feature`)
-3. Değişikliklerinizi commit edin (`git commit -m 'Add amazing feature'`)
-4. Branch'i push edin (`git push origin feature/amazing-feature`) 
-5. Pull Request oluşturun
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Create a Pull Request
 
-## 📄 Lisans
+## 📄 License
 
-Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-## 🙏 Teşekkürler
+## 🙏 Acknowledgments
 
-- [OpenAI Whisper](https://github.com/openai/whisper) - Transkripsiyon modeli
-- [pyannote.audio](https://github.com/pyannote/pyannote-audio) - Speaker diarization
-- [spaCy](https://spacy.io/) - NLP kütüphanesi
-- [Rich](https://github.com/Textualize/rich) - Terminal UI
+- **OpenAI Whisper** - Transcription model
+- **pyannote.audio** - Speaker diarization
+- **spaCy** - NLP library
+- **Rich** - Terminal UI
 
-## 📞 İletişim
+## 📞 Contact
 
-- GitHub Issues: [Sorun bildirin](https://github.com/kullanici/podcast-transcription/issues)
-- Email: info@podcasttranscription.com
-- Dokümantasyon: [Wiki](https://github.com/kullanici/podcast-transcription/wiki)
+- **GitHub Issues**: Report issues
+- **Email**: info@podcasttranscription.com
+- **Documentation**: Wiki
 
----
-
-⭐ Bu proje size yardımcı olduysa, GitHub'da yıldız vermeyi unutmayın! 
+⭐ **If this project helped you, don't forget to give it a star on GitHub!**
